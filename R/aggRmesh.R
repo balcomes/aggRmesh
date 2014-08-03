@@ -10,7 +10,6 @@
     stop("Ambiguous method!")
   }
   
-  cat(object)
   if(method=="metab"){
     cat(paste("\nUsing metab2mesh.\n"))
   }
@@ -24,13 +23,16 @@
   }
 
   if(method=="gene"){
-    result <- sapply(object,function(x){gene2mesh(x)$MeSH.Descriptor.Name})
+    result <- sapply(object,function(x){x = gene2mesh(x)$MeSH.Descriptor.Name})
   }
+  
+  result <- result[!sapply(result, is.null)]
+  cat(names(result))
   
   m <- min(sapply(result,length))
   if(m<n){
     n <- m
-    print("Short entry, using n = min instead")
+    warning("Short entry, using n = min instead")
   }
   
   return(RankAggreg(do.call(rbind,lapply(result,function(x){x[1:n]})),n))

@@ -1,6 +1,4 @@
 .gene2mesh <- function(object){
-  #library(XML)
-  #library(plyr)
   
   #http://gene2mesh.ncibi.org/fetch?geneid=1436
   #http://gene2mesh.ncibi.org/fetch?genesymbol=csf1r

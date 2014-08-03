@@ -1,6 +1,4 @@
 .metab2mesh <- function(object){
-  #library(XML)
-  #library(plyr)
   
   #http://metab2mesh.ncibi.org/fetch?compound=methylmalonic+acid
   #http://metab2mesh.ncibi.org/fetch?compound=methylmalonic+acid&publimit=100
