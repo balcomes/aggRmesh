@@ -51,4 +51,8 @@ View(metab2mesh("phenol"))
 View(mesh2gene("Photochemical Processes"))
 View(mesh2metab("Photochemical Processes"))
 3452:3456 \%.\% aggrmesh("gene2mesh") \%.\% aggrmesh("mesh2metab")
+g12met <- gene2mesh(12)$MeSH.Descriptor.Name[1:5] \%.\% aggrmesh("mesh2metab")
+g12mesh <- gene2mesh(12)
+g12met \%in\% g12mesh$MeSH.Descriptor.Name
+
 }

@@ -1,8 +1,30 @@
 
-.aggrmesh <- function(object, method, n, ...){
+.aggrmesh <- function(object, method, n, output, ...){
   
   if(length(object) < 2){
     stop("Need to submit 2 or more queries.")
+  }
+  
+  OUTPUT <- c("default",
+    "Gene.Identifier",
+    "Gene.Symbol",
+    "Gene.Description",
+    "Gene.Taxonomy.Identifier",
+    "MeSH.Descriptor.Name",
+    "MeSH.Descriptor.Identifier",
+    "MeSH.Qualifier.Name",
+    "Fover",
+    "ChiSquare",
+    "FisherExact.text",
+    "Compound.CompoundID",
+    "Compound.Name",
+    "Q-Value")
+  ocheck <- pmatch(output, OUTPUT)
+  if (is.na(ocheck)){
+    stop("Invalid ouput!")
+  }
+  if ( ocheck == -1){ 
+    stop("Ambiguous ouput!")
   }
   
   METHODS <- c("metab2mesh","gene2mesh","mesh2metab","mesh2gene")
@@ -18,7 +40,12 @@
     message(paste("\nUsing metab2mesh.\n"))
     result <- sapply(object,
                      function(x){
-                       x = metab2mesh(x)$MeSH.Descriptor.Name
+                       if(output == "default"){
+                         x = metab2mesh(x)[,"MeSH.Descriptor.Name"]
+                       }
+                       else{
+                         x = metab2mesh(x)[,output]
+                       }
                      })
   }
 
@@ -26,14 +53,24 @@
     message(paste("\nUsing gene2mesh.\n"))
     result <- sapply(object,
                      function(x){
-                       x = gene2mesh(x)$MeSH.Descriptor.Name
+                       if(output == "default"){
+                         x = gene2mesh(x)[,"MeSH.Descriptor.Name"]
+                       }
+                       else{
+                         x = gene2mesh(x)[,output]
+                       }
                      })
   }
   if(method=="mesh2metab"){
     message(paste("\nUsing mesh2metab.\n"))
     result <- sapply(object,
                      function(x){
-                       x = mesh2metab(x)$Compound.Name
+                       if(output == "default"){
+                         x = mesh2metab(x)[,"Compound.Name"]
+                       }
+                       else{
+                         x = mesh2metab(x)[,output]
+                       }
                      })
   }
   
@@ -41,7 +78,12 @@
     message(paste("\nUsing mesh2gene.\n"))
     result <- sapply(object,
                      function(x){
-                       x = mesh2gene(x)$Gene.Identifier
+                       if(output == "default"){
+                         x = mesh2gene(x)[,"Gene.Identifier"]
+                       }
+                       else{
+                         x = mesh2gene(x)[,output]
+                       }
                      })
   }
   
@@ -58,7 +100,7 @@
 
   ra <- RankAggreg(mat,n)
   ra <- ra$top.list
-  ra <- suppressWarnings(ra[is.na(as.numeric(ra))])
+  ra <- ra[ra>1]
   if(length(ra)<n){
     message("Had to return less than n terms due to short resultset(s).")
   }
@@ -67,14 +109,18 @@
 
 ################################################################################
 
-setGeneric("aggrmesh", function(object, method="metab2mesh", n=10, ...)
+setGeneric("aggrmesh", function(object,
+                                method="metab2mesh",
+                                n=10,
+                                output="default", ...)
   standardGeneric("aggrmesh")
 )
 
 setMethod("aggrmesh", 
           signature(object = c("ANY"),
                     method = c("ANY"),
-                    n = c("ANY")),
-          function(object, method, n, ...){
-            .aggrmesh(object=object, method=method, n=n, ...)
+                    n = c("ANY"),
+                    output = c("ANY")),
+          function(object, method, n, output, ...){
+            .aggrmesh(object=object, method=method, n=n, output=output, ...)
           })
