@@ -1,9 +1,5 @@
 exportPattern("^[[:alpha:]]+")
 
 import(XML)
-import(plyr)
+import(dplyr)
 import(RankAggreg)
-
-#exportMethods(aggRmesh)
-#exportMethods(metab2mesh)
-#exportMethods(metab2gene)

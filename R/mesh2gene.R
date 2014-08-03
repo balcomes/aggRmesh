@@ -1,4 +1,4 @@
-.mesh2gene <- function(object){
+.mesh2gene <- function(object, ...){
   
   #http://gene2mesh.ncibi.org/fetch?geneid=1436
   #http://gene2mesh.ncibi.org/fetch?genesymbol=csf1r
@@ -21,20 +21,25 @@
   e <- xmlParse(u)
   e <- xmlToList(e)
   e <- e$Gene2MeSH$Response$ResultSet
-  e <- lapply(e,function(x){unlist(x)[c("Gene.Identifier",
-                                        "Gene.Symbol",
-                                        "Gene.Description",
-                                        "Gene.Taxonomy.Identifier",
-                                        "MeSH.Descriptor.Name",
-                                        "MeSH.Descriptor.Identifier",
-                                        "MeSH.Qualifier.Name",
-                                        "Fover",
-                                        "ChiSquare",
-                                        "FisherExact.text")]})
+  coln <- c("Gene.Identifier",
+            "Gene.Symbol",
+            "Gene.Description",
+            "Gene.Taxonomy.Identifier",
+            "MeSH.Descriptor.Name",
+            "MeSH.Descriptor.Identifier",
+            "MeSH.Qualifier.Name",
+            "Fover",
+            "ChiSquare",
+            "FisherExact.text")
+  e <- lapply(e,function(x){unlist(x)[coln]})
   
-  result <- ldply(e[-length(e)])[,-1]
+  result <- do.call(rbind.data.frame, e)
+  names(result) <- coln
+  result <- result[-(dim(result)[1]),]
   result <- result[!duplicated(result[,2:7]),]
   rownames(result) <- NULL
+  i <- sapply(result, is.factor)
+  result[i] <- lapply(result[i], as.character)
   return(result)
 }
 

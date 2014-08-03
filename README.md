@@ -11,40 +11,8 @@ devtools::install_github("aggRmesh", "balcomes")
 Example Usage
 ========
 
-GeneIDs 1234,1235,1236:
+library(aggRmesh)
 
-CCR5 chemokine (C-C motif) receptor 5 (gene/pseudogene) [ Homo sapiens (human) ]
+library(dplyr)
 
-CCR6 chemokine (C-C motif) receptor 6 [ Homo sapiens (human) ]
-
-CCR7 chemokine (C-C motif) receptor 7 [ Homo sapiens (human) ]
-
-
-Command
-========
-
-metabs <- aggrmesh(aggrmesh(1234:1236,method="gene2mesh")$top.list,method="mesh2metab")$top.list
-
-
-Results
-========
-
-Interleukin-8
-
-IL2
-
-10023667
-
-Prostglandin E2
-
-CG 4305
-
-Tgfbeta
-
-sphingosine
-
-SPH
-
-L-threo-Sphingosine
-
-Calcium-47
+3452:3456 %.% aggrmesh("gene2mesh") %.% aggrmesh("mesh2metab")
