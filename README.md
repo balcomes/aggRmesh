@@ -15,4 +15,12 @@ library(aggRmesh)
 
 library(dplyr)
 
+View(gene2mesh(1234))
+
+View(metab2mesh("phenol"))
+
+View(mesh2gene("Photochemical Processes"))
+
+View(mesh2metab("Photochemical Processes"))
+
 3452:3456 %.% aggrmesh("gene2mesh") %.% aggrmesh("mesh2metab")
