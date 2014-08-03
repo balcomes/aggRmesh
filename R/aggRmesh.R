@@ -1,14 +1,23 @@
 
-.aggrmesh <- function(object, method = "metab", n = 10, ...){
+.aggrmesh <- function(object, method, n, ...){
   
   METHODS <- c("metab","gene")
-  method <- pmatch(method, METHODS)
-  if (is.na(method)){
+  mcheck <- pmatch(method, METHODS)
+  if (is.na(mcheck)){
     stop("Invalid method!")
   }
-  if (method == -1){ 
+  if ( mcheck == -1){ 
     stop("Ambiguous method!")
   }
+  
+  cat(object)
+  if(method=="metab"){
+    cat(paste("\nUsing metab2mesh.\n"))
+  }
+  if(method=="gene"){
+    cat(paste("\nUsing gene2mesh.\n"))
+  }
+  cat(paste("Top",n,"terms.\n"))
   
   if(method=="metab"){
     result <- sapply(object,function(x){metab2mesh(x)$MeSH.Descriptor.Name})
@@ -30,12 +39,14 @@
 
 ################################################################################
 
-setGeneric("aggrmesh", function(object, ...)
+setGeneric("aggrmesh", function(object, method = "metab", n = 10, ...)
   standardGeneric("aggrmesh")
 )
 
 setMethod("aggrmesh", 
-          signature(object = c("ANY")),
-          function(object, ...){
-            .aggrmesh(object=object, ...)
+          signature(object = c("ANY"),
+                    method = c("ANY"),
+                    n = c("ANY")),
+          function(object, method, n, ...){
+            .aggrmesh(object=object, method=method, n=n, ...)
           })
