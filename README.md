@@ -10,9 +10,13 @@ devtools::install_github("aggRmesh", "balcomes")
 Example usage:
 
 GeneIDs 1234,1235,1236:
+
 CCR5 chemokine (C-C motif) receptor 5 (gene/pseudogene) [ Homo sapiens (human) ]
+
 CCR6 chemokine (C-C motif) receptor 6 [ Homo sapiens (human) ]
+
 CCR7 chemokine (C-C motif) receptor 7 [ Homo sapiens (human) ]
+
 
 metabs <- aggrmesh(aggrmesh(1234:1236,method="gene2mesh")$top.list,method="mesh2metab")$top.list
 
