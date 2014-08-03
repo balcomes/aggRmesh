@@ -1,0 +1,9 @@
+Package: aggRmesh
+Type: Package
+Title: Tools for Accessing NCIBI Web Services in R: aggRmesh
+Version: 1.0
+Date: 2014-08-02
+Author: Shawn Balcome
+Maintainer: Maintainer: Shawn Balcome <balc0022@umn.edu>
+Description: Tools for Accessing NCIBI Web Services in R
+License: Artistic-2.0 | file LICENSE
