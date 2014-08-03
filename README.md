@@ -8,8 +8,8 @@ To install, install the devtools package if necessary (install.packages("devtool
 devtools::install_github("aggRmesh", "balcomes")
 
 
-Example usage:
-
+Example Usage
+========
 
 GeneIDs 1234,1235,1236:
 
@@ -19,25 +19,27 @@ CCR6 chemokine (C-C motif) receptor 6 [ Homo sapiens (human) ]
 
 CCR7 chemokine (C-C motif) receptor 7 [ Homo sapiens (human) ]
 
-Command:
 
+Command
+========
 
 metabs <- aggrmesh(aggrmesh(1234:1236,method="gene2mesh")$top.list,method="mesh2metab")$top.list
 
-Results:
 
+Results
+========
 
 Interleukin-8
 
-IL2         
+IL2
 
-10023667        
+10023667
 
 Prostglandin E2
 
 CG 4305
 
-Tgfbeta     
+Tgfbeta
 
 sphingosine
 
@@ -46,4 +48,3 @@ SPH
 L-threo-Sphingosine
 
 Calcium-47
-
