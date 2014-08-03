@@ -57,9 +57,13 @@
   mat[is.na(mat)] <- rep(runif(length(mat[is.na(mat)])))
 
   ra <- RankAggreg(mat,n)
-  return(ra$top.list)
+  ra <- ra$top.list
+  ra <- suppressWarnings(ra[is.na(as.numeric(ra))])
+  if(length(ra)<n){
+    message("Had to return less than n terms due to short resultset(s).")
+  }
+  return(ra)
 }
-
 
 ################################################################################
 
