@@ -9,7 +9,7 @@
     system(paste0("cmd /c start ",getwd(),"/stitch",goo,".pdf"))
   }
   if(Sys.info()['sysname']=="Darwin"){
-    system(paste0("open ",getwd(),"/stitch",goo,".pdf"))
+    system(paste0("open ",getwd(),"/stitch",goo,"pdf"))
   }
 }
 
