@@ -26,3 +26,11 @@ View(mesh2metab("Photochemical Processes"))
 3452:3456 %.% aggrmesh("gene2mesh") %.% aggrmesh("mesh2metab")
 
 gene2mesh(12)$MeSH.Descriptor.Name[1:5] %.% aggrmesh("mesh2metab")
+
+or
+
+library(knitr)
+
+report('gene2mesh(12)$MeSH.Descriptor.Name[1:5] %.% aggrmesh("mesh2metab")')
+
+(Wrap command in single quotes!)
