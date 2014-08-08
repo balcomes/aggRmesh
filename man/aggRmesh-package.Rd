@@ -47,6 +47,7 @@ http://gene2mesh.ncibi.org/
 library(aggRmesh)
 library(dplyr)
 
+mimi(1234)
 View(gene2mesh(1234))
 View(metab2mesh("phenol"))
 View(mesh2gene("Photochemical Processes"))
