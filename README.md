@@ -29,6 +29,8 @@ View(mesh2metab("Photochemical Processes"))
 
 gene2mesh(12)$MeSH.Descriptor.Name[1:5] %.% aggrmesh("mesh2metab")
 
+mimi(3558)$InteractingGeneIDs %.% aggrmesh(method="gene2mesh") %.% aggrmesh(method="mesh2metab")
+
 or
 
 library(knitr)

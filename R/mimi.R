@@ -58,7 +58,14 @@
   e <- xmlToList(e)
   e <- e$MiMI$Response$Result
   result <- lapply(e,function(x){unlist(x)})
-
+  
+  result$InteractingGeneIDs <- result$InteractingGeneIDs[seq(1,length(result$InteractingGeneIDs), by=2)]
+  result$GeneID <- result$GeneID[seq(1,length(result$GeneID), by=2)]
+  
+  names(result$GeneID) <- NULL
+  names(result$InteractingGeneIDs) <- NULL
+  names(result$InteractingGeneSymbols) <- NULL
+  
   return(result)
 }
 
