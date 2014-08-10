@@ -88,6 +88,7 @@
   }
   
   result <- result[!sapply(result, is.null)]
+  result <- lapply((result),function(x){x[!duplicated(x)]})
   
   if(length(result)<2){
     stop("Not enough valid resultsets for RankAggreg to work with.")
