@@ -104,6 +104,7 @@
   if(length(ra)<n){
     message("Had to return less than n terms due to short resultset(s).")
   }
+  ra <- ra[!duplicated(ra)]
   return(ra)
 }
 
