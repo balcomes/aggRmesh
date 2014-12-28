@@ -3,9 +3,12 @@ aggRmesh
 
 Tools for Accessing NCIBI Web Services in R: aggRmesh
 
-To install, install the devtools package if necessary (install.packages("devtools")) and run:
+To install:
 
-devtools::install_github("aggRmesh", "balcomes")
+install.packages("devtools")
+source("http://bioconductor.org/biocLite.R")
+biocLite("RankAggreg")
+devtools::install_github("balcomes/aggRmesh")
 
 
 Example Usage
