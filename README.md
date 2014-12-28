@@ -6,8 +6,11 @@ Tools for Accessing NCIBI Web Services in R: aggRmesh
 To install:
 
 install.packages("devtools")
+
 source("http://bioconductor.org/biocLite.R")
+
 biocLite("RankAggreg")
+
 devtools::install_github("balcomes/aggRmesh")
 
 
