@@ -1,6 +1,5 @@
 exportPattern("^[[:alpha:]]+")
 
-import(XML)
 import(dplyr)
 import(RankAggreg)
 import(knitr)
